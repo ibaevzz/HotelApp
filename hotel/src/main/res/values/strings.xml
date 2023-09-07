@@ -1,0 +1,9 @@
+<resources>
+    <string name="about_hotel">Об отеле</string>
+    <string name="hotel">Отель</string>
+    <string name="facilities">Удобства</string>
+    <string name="essentials">Самое необходимое</string>
+    <string name="included">Что включено</string>
+    <string name="not_included">Что не включено</string>
+    <string name="select_room">К выбору номера</string>
+</resources>
