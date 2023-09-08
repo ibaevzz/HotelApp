@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#FBFBFC</color>
+    <color name="rating_background">#32FFC700</color>
+    <color name="rating">#FFA800</color>
+    <color name="address_color">#0D72FF</color>\
+    <color name="gray">#828796</color>
+    <color name="dark">#2C3035</color>
+    <color name="spacer">#26828796</color>
+    <color name="blue">#0D72FF</color>
 </resources>
