@@ -10,4 +10,5 @@
     <color name="dark">#2C3035</color>
     <color name="spacer">#26828796</color>
     <color name="blue">#0D72FF</color>
+    <color name="details_background">#100D72FF</color>
 </resources>

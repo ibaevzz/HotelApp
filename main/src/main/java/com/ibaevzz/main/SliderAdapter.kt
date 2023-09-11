@@ -20,6 +20,6 @@ class SliderAdapter(private val list: List<String>): RecyclerView.Adapter<Slider
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        Picasso.get().load(list[position]).into(holder.binding.image)
+        Picasso.get().load(list[position]).error(R.drawable.image_not_found).into(holder.binding.image)
     }
 }
