@@ -13,5 +13,12 @@
     <fragment
         android:id="@+id/roomsFragment"
         android:name="com.ibaevzz.rooms.RoomsFragment">
+        <action
+            android:id="@+id/action_roomsFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.ibaevzz.payment.PaymentFragment">
     </fragment>
 </navigation>

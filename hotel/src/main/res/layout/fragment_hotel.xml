@@ -12,15 +12,13 @@
             android:id="@+id/main_inf"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="70dp"
             android:visibility="invisible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="@color/background"
-                android:paddingBottom="8dp">
+                android:background="@color/background">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -334,27 +332,30 @@
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="8dp">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/stroke_color"
+                        android:layout_gravity="top"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/select_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/white"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginVertical="9dp"
+                        android:text="@string/select_room"
+                        android:textFontWeight="500"
+                        android:background="@drawable/blue_button"
+                        android:textAllCaps="false" />
+                </FrameLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="bottom"
-            android:background="@color/white">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/select_hotel"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/white"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="9dp"
-                android:text="@string/select_room"
-                android:textFontWeight="500"
-                android:background="@drawable/blue_button"
-                android:textAllCaps="false" />
-        </FrameLayout>
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="wrap_content"

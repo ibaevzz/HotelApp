@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ibaevzz.main.Constants
 import com.ibaevzz.rooms.adapters.RoomsAdapter
@@ -48,7 +49,9 @@ class RoomsFragment: Fragment() {
             root.isRefreshing = false
             progress.visibility = View.GONE
             rooms.visibility = View.VISIBLE
-            rooms.adapter = RoomsAdapter(roomsModel.rooms)
+            rooms.adapter = RoomsAdapter(roomsModel.rooms){
+                findNavController().navigate(com.ibaevzz.main.R.id.action_roomsFragment_to_paymentFragment)
+            }
         }
     }
 

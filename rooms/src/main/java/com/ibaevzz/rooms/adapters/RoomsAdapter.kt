@@ -9,7 +9,7 @@ import com.ibaevzz.main.SliderAdapter
 import com.ibaevzz.rooms.RoomModel
 import com.ibaevzz.rooms.databinding.RoomLayoutBinding
 
-class RoomsAdapter(private val rooms: List<RoomModel>): RecyclerView.Adapter<RoomsAdapter.RoomViewHolder>(){
+class RoomsAdapter(private val rooms: List<RoomModel>, private val callback: ()->Unit): RecyclerView.Adapter<RoomsAdapter.RoomViewHolder>(){
     class RoomViewHolder(val binding: RoomLayoutBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
@@ -26,6 +26,9 @@ class RoomsAdapter(private val rooms: List<RoomModel>): RecyclerView.Adapter<Roo
             priceType.text = room.priceType
             facilities.layoutManager = FlexboxLayoutManager(root.context)
             facilities.adapter = FacilitiesAdapter(room.peculiarities)
+            selectRoom.setOnClickListener{
+                callback()
+            }
         }
     }
 

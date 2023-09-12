@@ -11,4 +11,6 @@
     <color name="spacer">#26828796</color>
     <color name="blue">#0D72FF</color>
     <color name="details_background">#100D72FF</color>
+    <color name="edit_text_back">#F6F6F9</color>
+    <color name="stroke_color">#E8E9EC</color>
 </resources>
