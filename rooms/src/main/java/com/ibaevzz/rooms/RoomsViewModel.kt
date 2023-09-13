@@ -4,8 +4,9 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.ibaevzz.rooms.network.RoomsRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RoomsViewModel(private val repository: RoomsRepository): ViewModel() {
+class RoomsViewModel @Inject constructor(private val repository: RoomsRepository): ViewModel() {
     private val _roomsModel: MutableLiveData<RoomsModel> = MutableLiveData()
     val roomsModel: LiveData<RoomsModel> = _roomsModel
 

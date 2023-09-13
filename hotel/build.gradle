@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -36,7 +37,7 @@ android {
 
 dependencies {
 
-    implementation project(path:":main")
+    implementation project(path: ":main")
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -44,6 +45,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
     implementation 'androidx.fragment:fragment-ktx:1.6.1'
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
+    implementation 'com.google.dagger:dagger:2.45'
+    implementation project(path: ':payment')
+    kapt 'com.google.dagger:dagger-compiler:2.45'
 
     def nav_version = "2.7.2"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
