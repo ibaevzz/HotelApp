@@ -3,9 +3,10 @@ package com.ibaevzz.payment.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ibaevzz.main.di.FragmentScope
+import com.ibaevzz.main.di.ViewModelKey
 import com.ibaevzz.payment.PaymentFragment
 import com.ibaevzz.payment.PaymentViewModel
-import com.ibaevzz.payment.ViewModelFactory
+import com.ibaevzz.main.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Subcomponent
@@ -28,6 +29,7 @@ interface PaymentModule {
     fun bindViewModelFactory(impl: ViewModelFactory): ViewModelProvider.Factory
 
     @IntoMap
+    @ViewModelKey(PaymentViewModel::class)
     @Binds
     fun bindPaymentViewModel(impl: PaymentViewModel): ViewModel
 }

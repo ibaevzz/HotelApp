@@ -29,6 +29,15 @@
                 android:id="@+id/photo_slider"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
+            <com.ibaevzz.main.DotsView
+                android:id="@+id/dots"
+                android:layout_width="70dp"
+                android:layout_height="22dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="5dp"
+                app:dots_count="5"
+                app:dots_radius="4dp"
+                app:corner="7dp"/>
         </androidx.cardview.widget.CardView>
 
         <TextView

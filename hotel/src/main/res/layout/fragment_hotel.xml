@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <FrameLayout
@@ -48,13 +47,13 @@
                                 android:layout_height="200dp"/>
                             <com.ibaevzz.main.DotsView
                                 android:id="@+id/dots"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="bottom"
-                                android:layout_marginBottom="10dp"
-                                custom:dots_count="5"
-                                custom:dots_radius="10dp"
-                                custom:corner="5dp"/>
+                                android:layout_width="70dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                app:dots_count="5"
+                                app:dots_radius="4dp"
+                                app:corner="7dp"/>
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView

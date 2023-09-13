@@ -1,9 +1,10 @@
-package com.ibaevzz.main
+package com.ibaevzz.main.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.ibaevzz.main.R
 import com.ibaevzz.main.databinding.SliderItemBinding
 import com.squareup.picasso.Picasso
 

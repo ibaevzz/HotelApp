@@ -1,27 +1,35 @@
 package com.ibaevzz.hotel
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.ibaevzz.hotel.databinding.FragmentHotelBinding
-import com.ibaevzz.hotel.network.HotelAPIClient
-import com.ibaevzz.hotel.network.HotelRepository
-import com.ibaevzz.main.Constants
-import com.ibaevzz.main.FacilitiesAdapter
-import com.ibaevzz.main.SliderAdapter
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.ibaevzz.hotel.di.HotelComponentProvider
+import com.ibaevzz.main.adapters.FacilitiesAdapter
+import com.ibaevzz.main.adapters.SliderAdapter
+import com.ibaevzz.main.ViewModelFactory
+import javax.inject.Inject
 
 class HotelFragment : Fragment() {
 
     private lateinit var binding: FragmentHotelBinding
     private var hotelName: String = ""
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: HotelViewModel by viewModels { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().applicationContext as HotelComponentProvider).provideHotel().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,22 +76,7 @@ class HotelFragment : Fragment() {
             facilities.adapter = FacilitiesAdapter(hotelModel.hotelDetails.peculiarities)
             photoSlider.adapter = SliderAdapter(hotelModel.imageUrls)
             rating.text = hotelModel.rating.toString()+" "+hotelModel.ratingName
+            dots.addSlider(photoSlider)
         }
     }
-
-    //TODO make inject
-    private fun getRepo(): HotelRepository{
-        return HotelRepository(
-            Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()).build()
-                .create(HotelAPIClient::class.java)
-        )
-    }
-
-    //TODO make inject
-    private val viewModel: HotelViewModel by lazy {
-        ViewModelProvider(requireActivity(), HotelViewModel.Factory(getRepo()))[HotelViewModel::class.java]
-    }
-
 }

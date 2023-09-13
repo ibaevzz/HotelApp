@@ -13,22 +13,11 @@ class HotelViewModel @Inject constructor(private val repository: HotelRepository
 
     init {
         updateHotelModel()
-        Log.i("zzz", "viewModel")
     }
 
     fun updateHotelModel(){
         viewModelScope.launch {
             _hotelModel.value = repository.getHotels()
-        }
-    }
-
-    class Factory(private val repository: HotelRepository): ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T:ViewModel> create(modelClass: Class<T>): T {
-            if(modelClass==HotelViewModel::class.java){
-                return HotelViewModel(repository) as T
-            }
-            throw IllegalArgumentException("UNKNOWN VIEW MODEL CLASS")
         }
     }
 }

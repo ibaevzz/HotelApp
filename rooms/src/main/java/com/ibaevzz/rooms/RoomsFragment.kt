@@ -1,25 +1,33 @@
 package com.ibaevzz.rooms
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ibaevzz.main.Constants
+import com.ibaevzz.main.ViewModelFactory
 import com.ibaevzz.rooms.adapters.RoomsAdapter
 import com.ibaevzz.rooms.databinding.FragmentRoomsBinding
-import com.ibaevzz.rooms.network.RoomsAPIClient
-import com.ibaevzz.rooms.network.RoomsRepository
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.ibaevzz.rooms.di.RoomsComponentProvider
+import javax.inject.Inject
 
 class RoomsFragment: Fragment() {
 
     private lateinit var binding: FragmentRoomsBinding
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: RoomsViewModel by viewModels { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().applicationContext as RoomsComponentProvider).provideRooms().inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -54,20 +62,4 @@ class RoomsFragment: Fragment() {
             }
         }
     }
-
-    //TODO make inject
-    private fun getRepo(): RoomsRepository {
-        return RoomsRepository(
-            Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()).build()
-                .create(RoomsAPIClient::class.java)
-        )
-    }
-
-    //TODO make inject
-    private val viewModel: RoomsViewModel by lazy {
-        ViewModelProvider(requireActivity(), RoomsViewModel.Factory(getRepo()))[RoomsViewModel::class.java]
-    }
-
 }

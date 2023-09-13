@@ -1,4 +1,4 @@
-package com.ibaevzz.main
+package com.ibaevzz.main.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,22 +1,30 @@
 package com.ibaevzz.payment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.ibaevzz.main.Constants
+import androidx.fragment.app.viewModels
+import com.ibaevzz.main.ViewModelFactory
 import com.ibaevzz.payment.databinding.PaymentFragmentBinding
-import com.ibaevzz.payment.network.PaymentAPIClient
-import com.ibaevzz.payment.network.PaymentRepository
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.ibaevzz.payment.di.PaymentComponentProvider
+import javax.inject.Inject
 
 class PaymentFragment: Fragment() {
 
     private lateinit var binding: PaymentFragmentBinding
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: PaymentViewModel by viewModels { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().applicationContext as PaymentComponentProvider).providePayment().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,20 +51,5 @@ class PaymentFragment: Fragment() {
             binding.root.isRefreshing = false
             binding.screen.visibility = View.VISIBLE
         }
-    }
-
-    //TODO make inject
-    private fun getRepo(): PaymentRepository {
-        return PaymentRepository(
-            Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()).build()
-                .create(PaymentAPIClient::class.java)
-        )
-    }
-
-    //TODO make inject
-    private val viewModel: PaymentViewModel by lazy {
-        ViewModelProvider(requireActivity(), PaymentViewModel.Factory(getRepo()))[PaymentViewModel::class.java]
     }
 }

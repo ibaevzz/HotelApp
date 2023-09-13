@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.ibaevzz.hotel.HotelFragment
 import com.ibaevzz.hotel.HotelViewModel
 import com.ibaevzz.main.di.FragmentScope
-import com.ibaevzz.payment.ViewModelFactory
+import com.ibaevzz.main.di.ViewModelKey
+import com.ibaevzz.main.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Subcomponent
@@ -28,6 +29,7 @@ interface HotelModule {
     fun bindViewModelFactory(impl: ViewModelFactory): ViewModelProvider.Factory
 
     @IntoMap
+    @ViewModelKey(HotelViewModel::class)
     @Binds
     fun bindHotelViewModel(impl: HotelViewModel): ViewModel
 }

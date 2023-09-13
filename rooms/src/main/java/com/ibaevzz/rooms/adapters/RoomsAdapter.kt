@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.ibaevzz.main.FacilitiesAdapter
-import com.ibaevzz.main.SliderAdapter
+import com.ibaevzz.main.adapters.FacilitiesAdapter
+import com.ibaevzz.main.adapters.SliderAdapter
 import com.ibaevzz.rooms.RoomModel
 import com.ibaevzz.rooms.databinding.RoomLayoutBinding
 
@@ -21,6 +21,7 @@ class RoomsAdapter(private val rooms: List<RoomModel>, private val callback: ()-
         val room = rooms[position]
         holder.binding.apply {
             photoSlider.adapter = SliderAdapter(room.imageUrls)
+            dots.addSlider(photoSlider)
             roomName.text = room.name
             price.text = room.price.toString()
             priceType.text = room.priceType
