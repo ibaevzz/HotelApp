@@ -21,4 +21,7 @@
     <string name="information_about_buyer">Информация о покупателе</string>
     <string name="data_transferred">Эти данные никому не передаются. После оплаты мы вышлем чек на указанные вами номер и почту.</string>
     <string name="mail">Почта</string>
+    <string name="make_order">Ваш заказ принят в работу</string>
+    <string name="confirm">Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
+    <string name="cool">Супер!</string>
 </resources>

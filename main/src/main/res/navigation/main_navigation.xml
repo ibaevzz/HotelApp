@@ -20,5 +20,17 @@
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.ibaevzz.payment.PaymentFragment">
+        <action
+            android:id="@+id/action_paymentFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="com.ibaevzz.success.SuccessFragment">
+        <action
+            android:id="@+id/action_successFragment_to_hotelFragment"
+            app:destination="@id/hotelFragment"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

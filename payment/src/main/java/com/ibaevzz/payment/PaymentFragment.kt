@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.ibaevzz.main.ViewModelFactory
 import com.ibaevzz.payment.databinding.PaymentFragmentBinding
 import com.ibaevzz.payment.di.PaymentComponentProvider
@@ -49,6 +50,7 @@ class PaymentFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.pay.setOnClickListener{
+            findNavController().navigate(com.ibaevzz.main.R.id.action_paymentFragment_to_successFragment)
             //TODO
         }
         binding.root.setOnRefreshListener {
@@ -70,6 +72,8 @@ class PaymentFragment: Fragment() {
             }
         }
     }
+
+
 
     private inner class PhoneTextWatcher: TextWatcher {
         var selection = 1
