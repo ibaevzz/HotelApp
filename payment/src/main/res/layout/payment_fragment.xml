@@ -286,6 +286,8 @@
                             android:layout_marginBottom="8dp"
                             android:hint="@string/phone_number"
                             android:textColorHint="@color/gray"
+                            app:prefixText="+7"
+                            app:prefixTextColor="@color/black"
                             app:hintTextColor="@color/gray"
                             app:boxCornerRadiusBottomEnd="10dp"
                             app:boxCornerRadiusTopEnd="10dp"
