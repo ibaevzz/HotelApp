@@ -24,4 +24,15 @@
     <string name="make_order">Ваш заказ принят в работу</string>
     <string name="confirm">Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
     <string name="cool">Супер!</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="birthday">Дата рождения</string>
+    <string name="citizenship">Гражданство</string>
+    <string name="num_passport">Номер загранпаспорта</string>
+    <string name="date_passport">Срок действия загранпаспорта</string>
+    <string name="add_tourist">Добавить туриста</string>
+    <string name="tour">Тур</string>
+    <string name="fuel_charge">Топливный сбор</string>
+    <string name="service_charge">Сервисный сбор</string>
+    <string name="payment">К оплате</string>
 </resources>

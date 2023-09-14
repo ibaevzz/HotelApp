@@ -4,14 +4,17 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ibaevzz.main.ViewModelFactory
 import com.ibaevzz.payment.databinding.PaymentFragmentBinding
 import com.ibaevzz.payment.di.PaymentComponentProvider
@@ -49,17 +52,54 @@ class PaymentFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.pay.setOnClickListener{
-            findNavController().navigate(com.ibaevzz.main.R.id.action_paymentFragment_to_successFragment)
-            //TODO
-        }
-        binding.root.setOnRefreshListener {
-            viewModel.updateHotelModel()
-        }
-        viewModel.paymentModel.observe(this){
-            binding.progress.visibility = View.GONE
-            binding.root.isRefreshing = false
-            binding.screen.visibility = View.VISIBLE
+        setView()
+
+    }
+
+    private fun setView(){
+        binding.apply {
+            pay.setOnClickListener{
+                val isNumFull = -1 !in this@PaymentFragment.phone
+                val isMailFull = Patterns.EMAIL_ADDRESS.matcher(mail.editText?.text.toString()).matches()
+
+                if(isNumFull&&isMailFull) {
+                    findNavController().navigate(com.ibaevzz.main.R.id.action_paymentFragment_to_successFragment)
+                }else{
+                    if(!isNumFull){
+                        phone.error = "Введите номер"
+                    }
+                    if(!isMailFull){
+                        mail.error = "Почта введена неверно"
+                    }
+                    Toast.makeText(requireContext(), "Введены не все данные", Toast.LENGTH_SHORT).show()
+                }
+            }
+            root.setOnRefreshListener {
+                viewModel.updateHotelModel()
+            }
+            viewModel.paymentModel.observe(this@PaymentFragment){model ->
+                val sum = model.price+model.fuelCharge+model.serviceCharge
+                progress.visibility = View.GONE
+                root.isRefreshing = false
+                screen.visibility = View.VISIBLE
+                pay.text = "Оплатить "+(sum/1000).toString()+" "+(sum%1000).toString()+" ₽"
+                hotelName.text = model.hotelName
+                hotelAddress.text = model.hotelAddress
+                rating.text = model.rating.toString()+" "+model.ratingName
+                from.text = model.departure
+                to.text = model.arrivalCountry
+                dates.text = model.dateStart+" - "+model.dateStop
+                nightCount.text = model.number_of_nights.toString()+" ночей"
+                hotel.text = model.hotelName
+                room.text = model.room
+                food.text = model.nutrition
+                tourists.layoutManager = LinearLayoutManager(requireContext())
+                tourists.adapter = ClientInfoAdapter(mutableListOf(Constants.SMALL, Constants.ADD))
+                price.text = (model.price/1000).toString()+" "+(model.price%1000).toString()+" ₽"
+                serviceCharge.text = (model.serviceCharge/1000).toString()+" "+(model.serviceCharge%1000).toString()+" ₽"
+                fuelCharge.text = (model.fuelCharge/1000).toString()+" "+(model.fuelCharge%1000).toString()+" ₽"
+                payment.text = (sum/1000).toString()+" "+(sum%1000).toString()+" ₽"
+            }
         }
         editText.addTextChangedListener(PhoneTextWatcher())
         editText.onFocusChangeListener = object: OnFocusChangeListener{
